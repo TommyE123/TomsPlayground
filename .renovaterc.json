@@ -2,16 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "automerge": true,
-  "docker": {
-    "enabled": true
-  },
-  "context": {
-    "regex": {
-      "linuxserver": {
-        "dockerfile": [
-          "FROM.*ghcr.io/linuxserver/baseimage-alpine:(?<version>\\d+\\.\\d+-.+)-ls.*"
-        ]
-      }
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "(?<=^FROM node:\\d+\\.\\d+\\.\\d+-alpine$\\n).*?(?=\\nWORKDIR /app$\\n)"
+      ]
     }
-  }
+  ]
 }
