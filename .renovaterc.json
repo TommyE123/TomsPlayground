@@ -3,8 +3,7 @@
   "extends": ["config:base"],
   "automerge": true,
   "docker": {
-    "enabled": true,
-    "baseImageUpdates": true
+    "enabled": true
   },
   "context": {
     "regex": {
