@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "automerge": true,
+  "docker": {
+    "enabled": true,
+    "baseImageUpdates": true
+  },
+  "context": {
+    "regex": {
+      "linuxserver": {
+        "dockerfile": [
+          "FROM.*ghcr.io/linuxserver/baseimage-alpine:(?<version>\\d+\\.\\d+-.+)-ls.*"
+        ]
+      }
+    }
+  }
+}
