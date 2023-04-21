@@ -6,7 +6,7 @@
     {
       "fileMatch": ["^Dockerfile$"],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sENV .*?_VERSION=(?<currentValue>.*)\\s"
+        "FROM.*ghcr.io/linuxserver/baseimage-alpine:(?<version>\\d+\\.\\d+-.+)-ls.*"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
