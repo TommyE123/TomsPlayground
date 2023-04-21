@@ -4,18 +4,13 @@
   "automerge": true,
   "regexManagers": [
     {
-      "fileMatch": ["^Dockerfile$"],
+      "fileMatch": ["^docker/arduino-cli/Dockerfile$"],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sENV .*?_VERSION=(?<currentValue>.*)\\s"
+        "ARG ARDUINO_CLI_VERSION=\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\\S*"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
-      "fileMatch": ["^Dockerfile$"],
-      "matchStrings": [
-        "ARG IMAGE=(?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)\\s"
-      ],
-      "datasourceTemplate": "docker"
+      "depNameTemplate": "arduino/arduino-cli",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^(?<version>.*)$"
     }
   ]
 }
