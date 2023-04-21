@@ -6,7 +6,7 @@
     {
       "fileMatch": ["^Dockerfile$"],
       "matchStrings": [
-        "(?<=^FROM node:\\d+\\.\\d+\\.\\d+-alpine$\\n).*?(?=\\nWORKDIR /app$\\n)"
+        "FROM.*ghcr.io/linuxserver/baseimage-alpine:(?<version>\\d+\\.\\d+-.+)-ls.*"
       ]
     }
   ]
