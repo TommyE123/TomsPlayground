@@ -7,7 +7,7 @@
       "description": "custom versioning for linuxserver/docker-baseimage-alpine",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["linuxserver/docker-baseimage-alpine"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<patch>\\d+)-(?<minor>[a-z0-9]+)-ls\\d+$",
+      "versioning": "regex:^s*(?<major>d+).(?<patch>d+)-(?<minor>[a-z0-9]+)-lsd+s*$",
       "allowedVersions": "/^(\\d+\\.(\\d{1,2}|[1-9])\\.[0-9a-z]+-ls\\d+)$/i",
       "matchCurrentValue": "/^\\d+\\./"
     }
