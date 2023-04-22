@@ -2,12 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "automerge": true,
-  "regexManagers": [
+  "packageRules": [
     {
-      "fileMatch": ["(^|/|\\.)Dockerfile$", "(^|/)Dockerfile[^/]*$"],
-      "matchStrings": [
-        "^FROM linuxserver/docker-baseimage-alpine:([0-9]+).([0-9]+)-[a-zA-Z0-9]+-ls([0-9]+)$"
-      ]
+      "description": "custom versioning for our docker node tag format",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["myorg/myimage"],
+      "versioning": "regex:^(?<language>.*)-(?<major>\\d+)?(\\.(?<minor>\\d+))?-(?<compatibility>.*)$",
+      "allowedVersions": "/^node-\\d+-\\w+$/",
+      "matchCurrentValue": "/^node/"
     }
   ]
 }
