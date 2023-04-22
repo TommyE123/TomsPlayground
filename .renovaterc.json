@@ -4,11 +4,10 @@
   "automerge": true,
   "regexManagers": [
     {
-      "fileMatch": ["Dockerfile"],
+      "fileMatch": ["(^|/|\\.)Dockerfile$", "(^|/)Dockerfile[^/]*$"],
       "matchStrings": [
         "^FROM linuxserver/docker-baseimage-alpine:([0-9]+).([0-9]+)-[a-zA-Z0-9]+-ls([0-9]+)$"
-      ],
-      "versioning": "regex:^FROM\\s+linuxserver/docker-baseimage-alpine:(?<major>[0-9]+).(?<minor>[0-9]+)-[a-zA-Z0-9]+-ls(?<patch>[0-9]+)$"
+      ]
     }
   ]
 }
