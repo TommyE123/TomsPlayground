@@ -4,12 +4,12 @@
   "automerge": true,
   "packageRules": [
     {
-      "description": "custom versioning for our docker node tag format",
+      "description": "custom versioning for linuxserver/docker-baseimage-alpine",
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["myorg/myimage"],
-      "versioning": "regex:^(?<language>.*)-(?<major>\\d+)?(\\.(?<minor>\\d+))?-(?<compatibility>.*)$",
-      "allowedVersions": "/^node-\\d+-\\w+$/",
-      "matchCurrentValue": "/^node/"
+      "matchPackageNames": ["linuxserver/docker-baseimage-alpine"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<patch>\\d+)-(?<minor>[a-z0-9]+)-ls\\d+$",
+      "allowedVersions": "/^(\\d+\\.(\\d{1,2}|[1-9])\\.[0-9a-z]+-ls\\d+)$/i",
+      "matchCurrentValue": "/^\\d+\\./"
     }
   ]
 }
