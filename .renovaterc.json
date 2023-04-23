@@ -1,5 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "automerge": true
+  "automerge": true,
+  "packageRules": [
+    {
+      "description": "custom versioning for linuxserver/docker-baseimage-alpine",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["linuxserver/docker-baseimage-alpine"],
+      "versioning": "regex:/^(?<major>d+).(?<minor>d+)-w+-ls(?<patch>d+)$/gm"
+    }
+  ]
 }
