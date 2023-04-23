@@ -1,5 +1,5 @@
 # Set the base image
-FROM ghcr.io/linuxserver/baseimage-alpine:3.15-11f50c8d-ls42
+FROM ghcr.io/linuxserver/baseimage-alpine@sha256:bd061febca5ba95b204c8137de27fdfc6443c0e003371710c9e0902fe3a02012
 
 # Set the maintainer
 LABEL maintainer="GhostWriters"
@@ -13,8 +13,8 @@ RUN apk add --no-cache py3-pip && \
 
 # Add a health check command to ensure the container is running correctly
 HEALTHCHECK --interval=1m \
-            --timeout=3s \
-            CMD ps -ef | grep cron || exit 1
+    --timeout=3s \
+    CMD ps -ef | grep cron || exit 1
 
 # Specify the entrypoint
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
