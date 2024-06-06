@@ -28,12 +28,12 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      # Git Checkout
-      - name: Checkout Code
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-        with:
-          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
-          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
+      # # Git Checkout
+      # - name: Checkout Code
+      #   uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      #   with:
+      #     token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+      #     fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
 
       # MegaLinter
       - name: MegaLinter2
