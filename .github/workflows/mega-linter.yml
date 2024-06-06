@@ -21,13 +21,13 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
-# jobs:
-#   build:
-#     name: MegaLinter1
-#     runs-on: ubuntu-latest
-#     permissions:
-#       pull-requests: write
-#     steps:
+jobs:
+  build:
+    name: MegaLinter1
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
       # # Git Checkout
       # - name: Checkout Code
       #   uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
@@ -72,11 +72,11 @@ concurrency:
       #     commit-message: "[MegaLinter] Apply linters automatic fixes"
       #     title: "[MegaLinter] Apply linters automatic fixes"
       #     labels: bot
-      # - name: Create PR output
-      #   if: always() && steps.cpr.conclusion == 'success'
-      #   run: |
-      #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-      #     echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Create PR output
+        if: always() && steps.cpr.conclusion == 'success'
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
       # # Push new commit if applicable (for now works only on PR from same repository, not from forks)
       # - name: Prepare commit
