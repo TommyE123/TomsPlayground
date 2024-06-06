@@ -36,17 +36,17 @@ jobs:
       #     fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
 
       # MegaLinter
-      # - name: MegaLinter2
-      #   id: ml
-      #   # To improve performance, you have the option to change the MegaLinter flavor that is being used.
-      #   # Complete details on available flavors can be found at https://megalinter.io/flavors/.
-      #   uses: tommye123/megalinter@All_Fixes_Together
-      #   env:
-      #     # All available variables are described in documentation
-      #     # https://megalinter.io/configuration/
-      #     VALIDATE_ALL_CODEBASE: true # Validates all source when its a PR, else just the git diff with main.
-      #     PAT: ${{ secrets.PAT }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: MegaLinter2
+        id: ml
+        # To improve performance, you have the option to change the MegaLinter flavor that is being used.
+        # Complete details on available flavors can be found at https://megalinter.io/flavors/.
+        uses: tommye123/megalinter@All_Fixes_Together
+        env:
+          # All available variables are described in documentation
+          # https://megalinter.io/configuration/
+          VALIDATE_ALL_CODEBASE: true # Validates all source when its a PR, else just the git diff with main.
+          PAT: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # # Upload MegaLinter artifacts
       # - name: Archive production artifacts
