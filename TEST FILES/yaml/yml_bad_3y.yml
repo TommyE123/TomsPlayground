@@ -1,0 +1,45 @@
+#####################
+#####################
+## Heres some vars ##
+#####################
+#####################
+
+############
+# Env Vars #
+############
+env:
+  browser: here: there : again "yep"
+  es6: 0
+  jest: yes
+
+Here: there 'is' something going on
+
+something: "For 'Nothing'" 123
+
+# Invalid Lines #
+invalid1: "Missing colon"
+invalid2: Missing quotes
+invalid3: Missing value:
+invalid4: "Extra colon": value
+invalid5: "Missing closing quote
+invalid6: Unquoted string with spaces
+invalid7: 123: "Invalid key"
+invalid8 "Missing colon between key and value"
+invalid9: "value with "nested" quotes"
+invalid10: : "Starts with colon"
+invalid11: "Ends with colon:"
+invalid12: key-without-quotes: "valid value"
+invalid13: "Unmatched quotes: value
+invalid14: "Value starts with a number: 123value"
+invalid15: key ends with space : "valid value"
+invalid16: "key starts with space" : "valid value"
+invalid17: key_with_unescaped_special_char@cter: "value"
+invalid18: - invalid use of hyphen
+invalid19: "Mismatched 'quotes"
+invalid20: value without key
+invalid21: "value with unescaped newline
+invalid22: "Unescaped: back\slash"
+invalid23: "Tab\tcharacter"
+invalid24: "Backspace\bcharacter"
+invalid25: 'Mismatched"quotes'
+invalid26: "Unescaped: double quote"
