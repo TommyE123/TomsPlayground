@@ -1,0 +1,93 @@
+name: "$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)"
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+parameters:
+  - name: QA
+    displayName: Quality Assurance
+    type: boolean
+    default: TRUE
+  - name: QA_DependOn
+    displayName: Depend on Quality Assurance
+    type: boolean
+    default: TRUE
+  - name: CI
+    displayName: Build and Publish
+    type: boolean
+    default: TRUE
+  - name: CD
+    displayName: Deploy
+    type: boolean
+    default: TRUE
+  - name: ReleaseToProd
+    displayName: Release To Production
+    type: boolean
+    default: false
+  - name: Debug
+    displayName: Debug
+    type: boolean
+    default: false
+  - name: SkipGate
+    displayName: Skip Gate
+    type: boolean
+    default: False
+  - name: MegaLinter_Version_Override
+    displayName: MegaLinter Version Override ie v7.11.1 or beta
+    type: string
+    default: " "
+
+variables:
+  - name: QAvariableDependsOn
+    ${{ if eq(parameters.QA_DependOn, 'TRUE') }}:
+      value: Automation_Linting
+  - name: QAvariableCondition
+    ${{ if eq(parameters.QA_DependOn, 'TRUE') }}:
+      value: "succeeded('Automation_Linting'),"
+  - name: MegaLinterFlavor
+    ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+      value: "megalinter-dotnet"
+    ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+      value: "megalinter"
+
+#Additional Repo Needed
+#Additional Repo Needed#Additional Repo Needed#Additional Repo Needed#Additional Repo Needed
+#Additional Repo Needed
+#Additional Repo Needed
+#Additional Repo Needed
+
+resources:
+  repositories:
+    - repository: TomsPonyPicker-QA
+      type: git
+      name: TomsPonyPicker-QA
+
+stages:
+  - ${{ if or(eq(parameters.QA, TRUE), eq(parameters.QA_DependOn, TRUE)) }}:
+      - template: _Pipelines/Templates/build-qa-megalinter-template.yml@TomsPonyPicker-QA
+        parameters:
+          megalinterFlavor: ${{ variables.MegaLinterFlavor }}
+          ${{ if ne(replace(parameters.MegaLinter_Version_Override, ' ', ''),'') }}:
+            megalinterVersion: ${{ replace(parameters.MegaLinter_Version_Override, ' ', '') }}
+
+
+
+  - ${{ if eq(parameters.CI, TRUE) }}:
+      - template: _Pipelines/Templates/azure-pipelines-CI.yml
+        parameters:
+          dependson: ${{ variables.QAvariableDependsOn }}
+          debug: ${{ parameters.debug }}
+
+
+
+
+  - ${{ if and(eq(parameters.CD, TRUE), ne(variables['Build.Reason'], 'PullRequest')) }}:
+      - template: _Pipelines/Templates/azure-pipelines-CD.yml
+        parameters:
+          automationCondition: ${{ variables.QAvariableCondition }}
+          releaseToProd: ${{ parameters.releaseToProd }}
+          skipGate: ${{ parameters.skipGate }}
+          debug: ${{ parameters.debug }}
