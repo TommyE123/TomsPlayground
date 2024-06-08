@@ -6,7 +6,7 @@ DISABLE:
   - SPELL
 
 DISABLE_LINTERS:
-  - REPOSITORY_DEVSKIM #Disabled as currently not working
+  - REPOSITORY_DEVSKIM # Disabled as currently not working
   - REPOSITORY_TRIVY_SBOM # NOISY
   - REPOSITORY_SYFT # NOISY
 
