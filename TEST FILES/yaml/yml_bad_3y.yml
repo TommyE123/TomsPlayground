@@ -1,45 +1,99 @@
-#####################
-#####################
-## Heres some vars ##
-#####################
-#####################
 
-############
-# Env Vars #
-############
-env:
-  browser: here: there : again "yep"
-  es6: 0
-  jest: yes
+name: "$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)"
+#ghgh
+trigger:
+  branches:
+    include:
+      - main
+      - develop
 
-Here: there 'is' something going on
 
-something: "For 'Nothing'" 123
+parameters:
+  - name: QA
+    displayName: Quality Assurance
+    type: boolean
+    default: true
 
-# Invalid Lines #
-invalid1: "Missing colon"
-invalid2: Missing quotes
-invalid3: Missing value:
-invalid4: "Extra colon": value
-invalid5: "Missing closing quote
-invalid6: Unquoted string with spaces
-invalid7: 123: "Invalid key"
-invalid8 "Missing colon between key and value"
-invalid9: "value with "nested" quotes"
-invalid10: : "Starts with colon"
-invalid11: "Ends with colon:"
-invalid12: key-without-quotes: "valid value"
-invalid13: "Unmatched quotes: value
-invalid14: "Value starts with a number: 123value"
-invalid15: key ends with space : "valid value"
-invalid16: "key starts with space" : "valid value"
-invalid17: key_with_unescaped_special_char@cter: "value"
-invalid18: - invalid use of hyphen
-invalid19: "Mismatched 'quotes"
-invalid20: value without key
-invalid21: "value with unescaped newline
-invalid22: "Unescaped: back\slash"
-invalid23: "Tab\tcharacter"
-invalid24: "Backspace\bcharacter"
-invalid25: 'Mismatched"quotes'
-invalid26: "Unescaped: double quote"
+
+  - name: QA_DependOn
+    displayName: Depend on Quality Assurance
+    type: boolean
+    default: true
+  - name: CI
+    displayName: Build and Publish
+    type: boolean
+    default: true
+
+  - name: CD
+    displayName: Deploy
+    type: boolean
+    default: True
+  - name: ReleaseToProd
+    displayName: Release To Production
+    type: boolean
+    default: false
+     #Silly Message
+  - name: Debug
+    displayName: Debug
+    type: boolean
+    default: false
+
+
+  - name: SkipGate
+    displayName: Skip Gate
+    type: boolean
+    default: False
+  - name: SkipGate
+    displayName: Skip Gate
+    type: boolean
+    default: False
+  - name: MegaLinter_Version_Override
+    displayName: MegaLinter Version Override ie v7.11.1 or beta
+    type: string
+    default: " "
+   #Silly Message
+variables:
+  - name: QAvariableDependsOn
+    ${{ if eq(parameters.QA_DependOn, 'true') }}:
+       value: Automation_Linting
+  - name: QAvariableCondition
+    ${{ if eq(parameters.QA_DependOn, 'True')   }}:
+      value: "succeeded('Automation_Linting'),"
+  - name: MegaLinterFlavor
+    ${{ if ne(variables['Build.Reason'], 'PullRequest') } }:
+      value: "megalinter-dotnet"
+    ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+      value: "megalinter"
+#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG#FAR TO LONG
+#Additional Repo Needed
+resources:
+  repositories:
+    - repository: Testing123-QA
+      type: git
+      name: Testing123-QA
+ #Silly Message 2
+stages:
+  - ${{ if or(eq(parameters.QA, true), eq(parameters.QA_DependOn, true)) }}:
+      - template: _Pipelines/Templates/build-qa-megalinter-template.yml@Testing123-QA
+        parameters:
+          megalinterFlavor: ${{ variables.MegaLinterFlavor }}
+          ${{ if ne(replace(parameters.MegaLinter_Version_Override, ' ', ''),'') }}:
+            megalinterVersion: ${{ replace(parameters.MegaLinter_Version_Override, ' ', '')! }}
+
+  - ${{ if eq(parameters.CI, true) }}:
+      - template: _Pipelines/Templates/azure-pipelines-CI.yml
+        parameters:
+          dependson: ${{ variables.QAvariableDependsOn }}
+          debug: ${{ parameters.debug }}
+
+  - ${{ if and(eq(parameters.CD, true),          ne(variables['Build.Reason'], 'PullRequest')) }}:
+      - template: _Pipelines/Templates/azure-pipelines-CD.yml
+        parameters:
+          automationCondition: ${{ Test }}
+          releaseToProd: ${{ parameters.releaseToProd }}
+          skipGate: ${{ parameters.skipGate }}
+          debug: ${{ parameters.debug }}
+
+
+
+
