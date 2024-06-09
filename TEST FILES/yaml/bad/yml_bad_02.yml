@@ -1,0 +1,26 @@
+#####################
+#####################
+## GitHub Actions  ##
+#####################
+#####################
+
+# Rule: document-start - Missing document start marker
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest # Rule: trailing-spaces - Trailing spaces are disallowed
+    steps:
+     - uses: actions/checkout@v2 # Rule: indentation - List items should be properly indented
+    - name: Run a one-line script  # Rule: comments - no space after comment
+      run: echo Hello, world! 
+    - name: Two-line script
+      run: |
+        echo Add other actions to build,
+        echo test
+    - name: Three-line script # Rule: key-duplicates - Duplicate keys are disallowed
+    run: | 
+        echo Line 1
+         echo Line 2
+        echo Line 3 # Rule: trailing-spaces - Trailing spaces are disallowed
+

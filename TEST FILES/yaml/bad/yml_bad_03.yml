@@ -1,0 +1,23 @@
+#####################
+#####################
+##### GitLab CI #####
+#####################
+#####################
+
+# Rule: document-start - Missing document start marker
+stages:
+- build
+- test
+build_job:
+  stage: build
+  script:
+    - echo "Building..." # Rule: trailing-spaces - Trailing spaces are disallowed
+     - echo "Build complete!" # Rule: empty-lines - Empty lines in a block avoided
+test_job:
+  stage: test
+  script:
+    - echo "Testing..."
+    - # Rule: empty-values - Empty values should be avoided
+    - echo "Test complete!" # Rule: line-length - Line too long, should be < 80 characters
+    - echo "Another test" # Rule: trailing-spaces - Trailing spaces are disallowed
+

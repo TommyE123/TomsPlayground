@@ -1,0 +1,37 @@
+########################
+########################
+## Data Serialization ##
+########################
+########################
+
+# Rule: document-start - Missing document start marker
+
+
+
+
+data:
+  - id: 1
+    name: John Doe
+  - id: 2
+    name: Jane Smith
+  - id: 3
+  - &anchor
+    foo: bar
+  - <<: *unknown
+    extra: value
+  - &anchor Foo Bar
+  - &anchor [item 1, item 2]
+  - items:
+    - item1
+    - item2
+  name: Alice Johnson # Rule: indentation - Inconsistent indentation
+address:
+  street: 123 Main St # Rule: trailing-spaces - Trailing spaces are disallowed
+  city: Anytown
+  zip: 12345
+  state: CA
+  country: USA
+  garage: { key1: 4, key2: 8 }
+phone:
+  - # Rule: empty-values: {forbid-in-block-sequences: true}
+

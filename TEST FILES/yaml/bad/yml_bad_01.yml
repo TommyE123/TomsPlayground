@@ -1,0 +1,31 @@
+#####################
+#####################
+## Azure Pipelines ##
+#####################
+#####################
+ 
+# Rule: document-start - Missing document start marker
+trigger: main
+pool:
+  # Rule: trailing-spaces - Trailing spaces are disallowed
+  vmImage: 'ubuntu-latest' 
+jobs:
+- job: Build  # Rule: indentation - Jobs should be properly indented
+
+
+
+  steps:
+  - task: UseNode@1
+    inputs:
+      versionSpec: 12.x
+      checkLatest: true
+      empty: # Rule: empty-values - Empty values should be avoided
+- job: Test
+  steps:
+
+ 
+
+  - script: npm install
+  - script: npm test
+  - script: echo "Testing!"
+

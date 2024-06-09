@@ -1,0 +1,22 @@
+##########################
+##########################
+## Kubernetes Manifests ##
+##########################
+##########################
+
+# Rule: document-start - Missing document start marker
+apiVersion: v1 # Rule: colons - Colons should have a space after them
+kind: Pod
+metadata:
+  name: mypod # Rule: indentation - Inconsistent indentation
+spec:
+  containers:
+  - name: mycontainer # Rule: hyphens - Improper use of hyphens for list items
+    image: myimage
+    ports: 
+    - containerPort: 80 # Rule: colons - Colons should have a space after them
+    - containerPort: 443
+  - name: mysidecar
+    image: sidecarimage
+    ports:
+    - containerPort: 8080

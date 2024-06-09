@@ -1,0 +1,23 @@
+#######################
+#######################
+## Ansible Playbooks ##
+#######################
+#######################
+
+# Rule: document-start - Missing document start marker
+- hosts: localhost
+  tasks:
+    - name: Install package
+      # Rule: trailing-spaces - Trailing spaces are disallowed
+      apt: 
+        name: nginx
+        state: present
+     - name: Start service
+      service:
+         name: nginx
+        state: started # Rule: indentation - Inconsistent indentation
+- hosts: all
+  tasks:
+    - name: Echo message
+      command: echo "Hello World"
+
