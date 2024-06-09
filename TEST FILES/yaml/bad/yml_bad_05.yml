@@ -5,17 +5,18 @@
 ##########################
 
 # Rule: document-start - Missing document start marker
-apiVersion: v1 # Rule: colons - Colons should have a space after them
+apiVersion: v1
 kind: Pod
 metadata:
-  name: mypod # Rule: indentation - Inconsistent indentation
+  name: mypod
 spec:
   containers:
-  - name: mycontainer # Rule: hyphens - Improper use of hyphens for list items
+  - name: mycontainer # Rule: indentation - Inconsistent indentation
     image: myimage
-    ports: 
-    - containerPort: 80 # Rule: colons - Colons should have a space after them
-    - containerPort: 443
+     # Rule: trailing-spaces - Trailing spaces are disallowed
+    ports:
+    - containerPort: 80 # Rule: indentation - Inconsistent indentation
+    - containerPort: 443 # Rule: indentation - Inconsistent indentation
   - name: mysidecar
     image: sidecarimage
     ports:

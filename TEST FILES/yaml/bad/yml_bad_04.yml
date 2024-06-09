@@ -5,6 +5,7 @@
 ########################
 
 # Rule: document-start - Missing document start marker
+# Rule: empty-lines - Too many blank lines (4 > 2)
 
 
 
@@ -17,6 +18,7 @@ data:
   - id: 3
   - &anchor
     foo: bar
+    # Rule: anchors - found undeclared alias "unknown"
   - <<: *unknown
     extra: value
   - &anchor Foo Bar
@@ -26,12 +28,13 @@ data:
     - item2
   name: Alice Johnson # Rule: indentation - Inconsistent indentation
 address:
-  street: 123 Main St # Rule: trailing-spaces - Trailing spaces are disallowed
+  # Rule: trailing-spaces - Trailing spaces are disallowed
+  street: 123 Main St
   city: Anytown
   zip: 12345
   state: CA
   country: USA
   garage: { key1: 4, key2: 8 }
 phone:
-  - # Rule: empty-values: {forbid-in-block-sequences: true}
+# Rule: empty-lines - Too many blank lines (1 > 0)
 
