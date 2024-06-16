@@ -1,0 +1,10 @@
+Results of dotnet-format linter (version 000)
+See documentation on https://megalinter.io/descriptors/csharp_dotnet_format/
+-----------------------------------------------
+
+✅ [SUCCESS] .automation/test/csharp/good/csharp_good_01.cs
+    
+
+✅ [SUCCESS] .automation/test/csharp/good/csharp_good_02.cs
+    
+
