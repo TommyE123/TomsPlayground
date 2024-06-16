@@ -40,7 +40,7 @@ jobs:
         id: ml
         # To improve performance, you have the option to change the MegaLinter flavor that is being used.
         # Complete details on available flavors can be found at https://megalinter.io/flavors/.
-        uses: tommye123/megalinter@All_Fixes_Together
+        uses: tommye123/megalinter@csharpier_config_file_fix
         env:
           # All available variables are described in documentation
           # https://megalinter.io/configuration/
