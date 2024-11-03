@@ -1,0 +1,17 @@
+name: "🕷️ Bug Report - Specific Linter"
+description: Report errors or unexpected behavior with the linter
+type: Bug
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 👋 Thank you for helping improve our project!
+
+        Before you file a new issue, please take a moment to **[search existing issues](https://github.com/oxsecurity/megalinter/issues)**
+        to see if your bug has already been reported. This helps us keep the issue tracker clean and avoids duplicates.
+
+        When reporting, please include as much detail as possible. The more information you provide, the easier it will be for us to investigate and fix the issue!
+
+        We appreciate your time and effort. Thank you for helping make this project better! 🙏
