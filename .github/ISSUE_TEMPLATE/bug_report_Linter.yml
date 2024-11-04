@@ -1,6 +1,5 @@
 name: "🕷️ Bug Report - Specific Linter"
-description: Report errors or unexpected behavior
-type: Bug
+description: Report errors or unexpected behavior related to a specific linter
 labels:
   - bug
 body:
