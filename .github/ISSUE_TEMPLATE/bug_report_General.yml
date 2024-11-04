@@ -1,0 +1,97 @@
+name: "🕷️ Bug Report - General"
+description: Report errors or unexpected behavior e.g. installation, configuration, or general issues
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before Submitting
+        - 🔍 Please make sure to [search for existing issues](https://github.com/oxsecurity/megalinter/issues) before filing a new one!
+        - 📝 Provide as much detail as possible for faster resolution
+        - 📋 Include relevant logs, screenshots, and code samples
+
+  - type: dropdown
+    attributes:
+      label: MegaLinter version
+      description: Older versions are not be supported.
+      options:
+        - Latest
+        - Beta
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: Usage method
+      description: How / Where are you using MegaLinter?
+      multiple: true
+      options:
+        - Azure Pipelines
+        - Bitbucket Pipelines
+        - Concourse
+        - Docker container
+        - Drone CI
+        - GitHub Action
+        - GitLab CI
+        - Jenkins
+        - Run MegaLinter locally
+        - Other (please specify in "Steps to Reproduce")
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "💻 Steps to Reproduce"
+      description: We highly suggest including screenshots, output logs, and code snippets.
+      placeholder: |
+        Having detailed steps helps us reproduce the bug.
+        Configuration file (if applicable):
+        ```yaml
+        # Your configuration here
+        ```
+
+        Error output:
+        ```
+        # Paste error logs here
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: ✔️ Expected Behavior
+      placeholder: What were you expecting?
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: ❌ Actual Behavior
+      placeholder: What happened instead?
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: "📊 Other Versions Tested"
+      description: "If possible, Please tell us which other versions you tried and what happened"
+      placeholder: |
+        Example:
+        ✅ Tried v8.1.0: Same issue occurred
+        ❌ Tried v5.0.0: Issue did not occur
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: "📋 Submission Checklist"
+      description: "Please verify that you've completed the following"
+      options:
+        - label: "I have searched for existing issues and confirmed this is not a duplicate"
+          required: true
+        - label: "I have included relevant configuration files and error logs"
+          required: true
+        - label: "I have provided clear steps to reproduce the issue"
+          required: true
