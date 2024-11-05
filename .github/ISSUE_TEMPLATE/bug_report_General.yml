@@ -26,17 +26,16 @@ body:
     attributes:
       label: Usage method
       description: How / Where are you using MegaLinter?
-      multiple: true
       options:
         - Azure Pipelines
         - Bitbucket Pipelines
-        - Concourse
-        - Docker container
+        - Concourse CI
+        - Docker (CLI)
         - Drone CI
-        - GitHub Action
+        - GitHub Actions
         - GitLab CI
         - Jenkins
-        - Run MegaLinter locally
+        - Run locally
         - Other (please specify in "Steps to Reproduce")
     validations:
       required: true
