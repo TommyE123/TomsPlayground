@@ -43,19 +43,16 @@ body:
 
   - type: textarea
     attributes:
+      label: "⚙️ .mega-linter.yml file"
+      description: "Please provide .mega-linter.yml configuration file content"
+      render: yaml
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
       label: "💻 Steps to Reproduce"
       description: We highly suggest including screenshots, output logs, and code snippets.
-      placeholder: |
-        Having detailed steps helps us reproduce the bug.
-        Configuration file (if applicable):
-        ```yaml
-        # Your configuration here
-        ```
-
-        Error output:
-        ```
-        # Paste error logs here
-        ```
     validations:
       required: true
 
@@ -83,15 +80,3 @@ body:
         ❌ Tried v5.0.0: Issue did not occur
     validations:
       required: false
-
-  - type: checkboxes
-    attributes:
-      label: "📋 Submission Checklist"
-      description: "Please verify that you've completed the following"
-      options:
-        - label: "I have searched for existing issues and confirmed this is not a duplicate"
-          required: true
-        - label: "I have included relevant configuration files and error logs"
-          required: true
-        - label: "I have provided clear steps to reproduce the issue"
-          required: true
