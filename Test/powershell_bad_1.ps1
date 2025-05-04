@@ -8,7 +8,8 @@ function BadFunction {
     $Password
     $VariableThatIsNotUsedLater = '5'
     try {
-        'Empty Catch Block' 
+        'Empty Catch Block'
     } catch {}
 }
 
+1
